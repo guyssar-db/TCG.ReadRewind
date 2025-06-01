@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import initialCards from '../database/bf_db.json';
+import { useTheme } from '../context/ThemeContext';
+import CardEffect from '../components/CardEffect';
+
 
 type Card = {
     lang: string;
@@ -7,10 +10,10 @@ type Card = {
     img: string;
     type: string;
     world: string;
-    size: number;
-    atk: number;
-    cri: number;
-    def: number;
+    size: number | null;
+    atk: number | null;
+    cri: number | null;
+    def: number | null;
     name: string;
     attibute: string;
     illust: string;
@@ -19,16 +22,17 @@ type Card = {
 
 const CardManager: React.FC = () => {
     const [cards, setCards] = useState<Card[]>(initialCards);
+    const { isDarkMode } = useTheme();
     const [newCard, setNewCard] = useState<Card>({
         lang: "TH",
         set: "",
         img: "",
         type: "",
         world: "",
-        size: 1,
-        atk: 0,
-        cri: 0,
-        def: 0,
+        size: null,
+        atk: null,
+        cri: null,
+        def: null,
         name: "",
         attibute: "",
         illust: "",
@@ -61,10 +65,10 @@ const CardManager: React.FC = () => {
             img: "",
             type: "",
             world: "",
-            size: 1,
-            atk: 0,
-            cri: 0,
-            def: 0,
+            size: null,
+            atk: null,
+            cri: null,
+            def: null,
             name: "",
             attibute: "",
             illust: "",
@@ -89,10 +93,10 @@ const CardManager: React.FC = () => {
                 img: "",
                 type: "",
                 world: "",
-                size: 1,
-                atk: 0,
-                cri: 0,
-                def: 0,
+                size: null,
+                atk: null,
+                cri: null,
+                def: null,
                 name: "",
                 attibute: "",
                 illust: "",
@@ -107,10 +111,9 @@ const CardManager: React.FC = () => {
             .then(() => alert('คัดลอก JSON แล้ว!'))
             .catch(() => alert('ไม่สามารถคัดลอก JSON ได้'));
     };
-
+    const [searchTerm, setSearchTerm] = useState<string>("");
     return (
         <div className="p-4 max-w-6xl mx-auto">
-            {/* ปุ่มแสดง JSON */}
             <div className="flex justify-end mb-4">
                 <button
                     onClick={() => setShowJsonPopup(true)}
@@ -120,16 +123,15 @@ const CardManager: React.FC = () => {
                 </button>
             </div>
 
-            {/* ฟอร์มกรอก */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                 {Object.entries(newCard).map(([key, value]) => (
                     key === 'effect' ? (
                         <textarea
                             key={key}
                             name={key}
-                            value={value}
+                            value={value ?? ''}
                             onChange={handleChange}
-                            className="border border-gray-300 p-2 rounded resize-y min-h-[60px]"
+                            className={`border p-2 rounded min-h-[100px] ${isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : 'bg-white border-gray-300 text-black'}`}
                             placeholder={key}
                         />
                     ) : (
@@ -137,9 +139,9 @@ const CardManager: React.FC = () => {
                             key={key}
                             type="text"
                             name={key}
-                            value={value}
+                            value={value ?? ''}
                             onChange={handleChange}
-                            className="border border-gray-300 p-2 rounded"
+                            className={`border border-gray-300 p-2 rounded ${isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : 'bg-white border-gray-300 text-black'}`}
                             placeholder={key}
                         />
                     )
@@ -153,34 +155,57 @@ const CardManager: React.FC = () => {
                     {editIndex !== null ? 'บันทึกการแก้ไข' : 'เพิ่มข้อมูล'}
                 </button>
             </div>
-
-            {/* Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {cards.map((card, index) => (
-                    <div key={index} className="bg-gray-900 text-white shadow-md rounded-md p-4 relative">
-                        <img src={card.img} alt={card.name} className="w-full h-48 object-cover mb-3 rounded" />
-                        <h3 className="font-bold text-lg">{card.name}</h3>
-                        <p>Type: {card.type}</p>
-                        <p>World: {card.world}</p>
-                        <p>ATK: {card.atk} | CRI: {card.cri} | DEF: {card.def}</p>
-                        <p className="italic text-sm text-gray-400">Effect: {card.effect}</p>
-                        <div className="absolute top-2 right-2 space-x-2">
-                            <button
-                                onClick={() => handleEdit(index)}
-                                className="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600"
-                            >
-                                แก้ไข
-                            </button>
-                            <button
-                                onClick={() => handleDelete(index)}
-                                className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
-                            >
-                                ลบ
-                            </button>
-                        </div>
-                    </div>
-                ))}
+            <div className="mb-4">
+                <input
+                    type="text"
+                    placeholder="ค้นหาตามชื่อการ์ด..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className={`w-full border p-2 rounded ${isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : 'bg-white border-gray-300 text-black'}`}
+                />
             </div>
+            {/* Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {cards
+                    .filter((card) =>
+                        card.name.toLowerCase().includes(searchTerm.toLowerCase())
+                    )
+                    .map((card, index) => (
+                        <div key={index} className={`flex flex-col ${isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : 'bg-white border-gray-300 text-black'} rounded-md shadow-md p-4 w-full`}>
+
+                            <div className="flex items-start space-x-4">
+                                <img src={card.img} alt={card.name} className="w-40 h-56 object-cover rounded" />
+
+                                <div className="flex flex-col items-end justify-start flex-1 space-y-2">
+                                    <div className='flex  justify-between w-full'>
+                                        <h1>{card.name}</h1>
+                                        <div className='flex gap-2'>
+                                            <button
+                                                onClick={() => handleEdit(index)}
+                                                className="bg-yellow-500 text-white px-3 h-10 rounded hover:bg-yellow-600"
+                                            >
+                                                แก้ไข
+                                            </button>
+                                            <button
+                                                onClick={() => handleDelete(index)}
+                                                className="bg-red-500 text-white px-3 h-10 rounded hover:bg-red-600"
+                                            >
+                                                ลบ
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div className="relative mt-4 min-h-[60px]">
+                                        <div className={`${isDarkMode ? 'bg-gray-900 border-gray-700 text-white' : 'bg-gray-200 border-gray-300 text-black'} bottom-2 right-2  bg-opacity-70 text-xs p-2 rounded-md w-full`}>
+                                            <CardEffect effect={card.effect} />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    ))}
+            </div>
+
 
             {/* Popup JSON */}
             {showJsonPopup && (
