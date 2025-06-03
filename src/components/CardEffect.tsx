@@ -11,25 +11,25 @@ const CardEffect: React.FC<CardEffectProps> = ({ effect }) => {
     const tokenToImage: Record<string, { src: string; size: number }> = {
         '[@]': {
             src: isDarkMode
-                ? '/images/bf_key/nctext.png'
-                : '/images/bf_key/bnctext.png',
+                ? '/images/bf_key/nctext.webp'
+                : '/images/bf_key/bnctext.webp',
             size: 12,
         },
 
-        '[@2attack]': { src: '/images/bf_key/Double Attack.png', size: 20 },
-        '[@bloodlust]': { src: '/images/bf_key/Bloodlust.png', size: 20 },
-        '[@soulguard]': { src: '/images/bf_key/Soulguard.png', size: 20 },
-        '[@buddygift]': { src: '/images/bf_key/BuddyGift.png', size: 20 },
-        '[@penetrate]': { src: '/images/bf_key/Penetrate.png', size: 20 },
+        '[@2attack]': { src: '/images/bf_key/Double Attack.webp', size: 20 },
+        '[@bloodlust]': { src: '/images/bf_key/Bloodlust.webp', size: 20 },
+        '[@soulguard]': { src: '/images/bf_key/Soulguard.webp', size: 20 },
+        '[@buddygift]': { src: '/images/bf_key/BuddyGift.webp', size: 20 },
+        '[@penetrate]': { src: '/images/bf_key/Penetrate.webp', size: 20 },
 
-        '[@callcost]': { src: '/images/bf_key/Call Cost.png', size: 20 },
-        '[@castcost]': { src: '/images/bf_key/Cast Cost.png', size: 20 },
-        '[@equipcost]': { src: '/images/bf_key/Equip Cost.png', size: 20 },
+        '[@callcost]': { src: '/images/bf_key/Call Cost.webp', size: 20 },
+        '[@castcost]': { src: '/images/bf_key/Cast Cost.webp', size: 20 },
+        '[@equipcost]': { src: '/images/bf_key/Equip Cost.webp', size: 20 },
 
-        '[@1/turn]': { src: '/images/bf_key/1 per Turn Rag.png', size: 20 },
-        '[@an/turn]': { src: '/images/bf_key/Ablility Name.png', size: 20 },
-        '[@1/game]': { src: '/images/bf_key/1 per Game Rag.png', size: 20 },
-        '[@1/set]': { src: '/images/bf_key/1 per set.png', size: 20 },
+        '[@1/turn]': { src: '/images/bf_key/1 per Turn Rag.webp', size: 20 },
+        '[@an/turn]': { src: '/images/bf_key/Ablility Name.webp', size: 20 },
+        '[@1/game]': { src: '/images/bf_key/1 per Game Rag.webp', size: 20 },
+        '[@1/set]': { src: '/images/bf_key/1 per set.webp', size: 20 },
     };
 
     const regex = new RegExp(

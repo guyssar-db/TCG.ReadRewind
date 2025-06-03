@@ -2,7 +2,7 @@
   {
     "lang": "TH",
     "set": "Crimson Court",
-    "img": "/images/buddyfight_img/Crimson_Court/Thirsty_SYCOPHANT.png",
+    "img": "/images/buddyfight_img/Crimson_Court/Thirsty_SYCOPHANT.webp",
     "type": "มอนสเตอร์",
     "world": "ดาร์คเนสดราก้อนเวิลด์",
     "size": 1,
@@ -17,7 +17,7 @@
   {
     "lang": "TH",
     "set": "Crimson Court",
-    "img": "/images/buddyfight_img/Crimson_Court/SYCOPHANT.png",
+    "img": "/images/buddyfight_img/Crimson_Court/SYCOPHANT.webp",
     "type": "มอนสเตอร์",
     "world": "ดาร์คเนสดราก้อนเวิลด์",
     "size": 1,
@@ -32,7 +32,7 @@
   {
     "lang": "TH",
     "set": "Force of Will",
-    "img": "/images/buddyfight_img/FOW/Angel of Healing.png",
+    "img": "/images/buddyfight_img/FOW/Angel of Healing.webp",
     "type": "มอนสเตอร์",
     "world": "สตาร์ดราก้อนเวิลด์",
     "size": 1,
@@ -47,7 +47,7 @@
   {
     "lang": "TH",
     "set": "Force of Will",
-    "img": "/images/buddyfight_img/FOW/Faria, Swordmaster of Creation.png",
+    "img": "/images/buddyfight_img/FOW/Faria, Swordmaster of Creation.webp",
     "type": "มอนสเตอร์",
     "world": "เลเจนด์เวิลด์",
     "size": 2,
@@ -62,7 +62,7 @@
   {
     "lang": "TH",
     "set": "Master Duel",
-    "img": "/images/buddyfight_img/Master_Duel/eviltwin ki likil_lilla.png",
+    "img": "/images/buddyfight_img/Master_Duel/eviltwin ki likil_lilla.webp",
     "type": "มอนสเตอร์ไม้ตาย",
     "world": "ดันเจี้ยนเวิลด์",
     "size": 2,
@@ -77,7 +77,7 @@
   {
     "lang": "TH",
     "set": "Crimson Court",
-    "img": "/images/buddyfight_img/Crimson_Court/blood wine of the count.png",
+    "img": "/images/buddyfight_img/Crimson_Court/blood wine of the count.webp",
     "type": "เวทมนตร์",
     "world": "ดาร์นเนสดราก้อนเวิลด์",
     "size": null,
@@ -92,7 +92,7 @@
   {
     "lang": "TH",
     "set": "Crimson Court",
-    "img": "/images/buddyfight_img/Crimson_Court/COUNTESS FAN.png",
+    "img": "/images/buddyfight_img/Crimson_Court/COUNTESS FAN.webp",
     "type": "ไอเท็ม",
     "world": "ดาร์คเนสดราก้อนเวิลด์",
     "size": null,
@@ -107,7 +107,7 @@
   {
     "lang": "TH",
     "set": "Crimson Court",
-    "img": "/images/buddyfight_img/Crimson_Court/CRIMSON COURT COURTESAN.png",
+    "img": "/images/buddyfight_img/Crimson_Court/CRIMSON COURT COURTESAN.webp",
     "type": "มอนสเตอร์",
     "world": "ดาร์คเนสดราก้อนเวิลด์",
     "size": 2,
