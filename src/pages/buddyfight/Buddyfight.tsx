@@ -23,6 +23,8 @@ type Card = {
 const Buddyfight: React.FC = () => {
   const { isDarkMode } = useTheme();
   const [selectedCard, setSelectedCard] = useState<Card | null>(null);
+  const [selectedSet, setSelectedSet] = useState<{ name: string; cards: Card[] } | null>(null);
+  const [showSetPopup, setShowSetPopup] = useState(false);
 
   const groupedCards = cards.reduce((acc: Record<string, Card[]>, card) => {
     if (!acc[card.set]) acc[card.set] = [];
@@ -36,7 +38,18 @@ const Buddyfight: React.FC = () => {
 
       {Object.entries(groupedCards).map(([setName, group]) => (
         <div key={setName} className={`mb-8 ${isDarkMode ? 'bg-gray-900' : 'bg-white'} p-3 rounded-md`}>
-          <h3 className={`text-xl font-semibold p-3`}><strong>Set : </strong>{setName}</h3>
+          <h3 className={`text-xl font-semibold p-3 flex items-center justify-between`}>
+            <span><strong>Set : </strong>{setName}</span>
+            <button
+              className="text-sm px-3 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
+              onClick={() => {
+                setSelectedSet({ name: setName, cards: group });
+                setShowSetPopup(true);
+              }}
+            >
+              แสดงทั้งหมด
+            </button>
+          </h3>
 
           <div className="w-full overflow-x-auto p-3 pb-2 relative overflow-y-hidden">
             <div className="flex flex-nowrap space-x-4 w-max overflow-visible relative">
@@ -46,15 +59,29 @@ const Buddyfight: React.FC = () => {
                   className={`max-w-[16rem] relative z-10 hover:z-20 cursor-pointer hover:scale-105 rounded-lg shadow-md p-4 transform transition duration-300 ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-black'}`}
                   onClick={() => setSelectedCard(card)}
                 >
-                  <span className={`absolute top-2 right-2 text-xs font-bold px-2 py-1 rounded ${isDarkMode ? 'bg-white text-black' : 'bg-gray-900 text-white'}`}>
+
+                  <span className={`absolute top-2 right-2 text-xs font-bold px-2 py-1 rounded z-20 ${isDarkMode ? 'bg-white text-black' : 'bg-gray-900 text-white'}`}>
                     {card.lang.toUpperCase()}
                   </span>
-                  <span className={`absolute top-2 right-11 text-xs font-bold px-2 py-1 rounded ${isDarkMode ? 'bg-gray-300 text-black' : 'bg-gray-900 text-white'}`}>
+                  <span className={`absolute top-2 right-11 text-xs font-bold px-2 py-1 rounded z-20 ${isDarkMode ? 'bg-gray-300 text-black' : 'bg-gray-900 text-white'}`}>
                     {card.type}
                   </span>
 
                   <div className="flex justify-center">
-                    <img src={card.img} alt={card.name} className="h-72 object-cover rounded" />
+                    <div className={`${card.type === "ไม้ตาย" || card.type.includes("มอนสเตอร์ไม้ตาย")
+                      ? "h-67 z-10"
+                      : ""
+                      }`}>
+                      <img
+                      loading="lazy"
+                        src={card.img}
+                        alt={card.name}
+                        className={`rounded${card.type === "ไม้ตาย" || card.type.includes("มอนสเตอร์ไม้ตาย")
+                          ? "transform rotate-90 translate-y-[53px] scale-[120%] w-73 origin-center"
+                          : "object-cover  h-72"
+                          }`}
+                      />
+                    </div>
                   </div>
                   <div className="mt-2 font-semibold">{card.name}</div>
                   <div className="text-sm text-gray-400">illust : {card.illust}</div>
@@ -66,11 +93,9 @@ const Buddyfight: React.FC = () => {
         </div>
       ))}
 
-
-
       {/* Modal */}
       {selectedCard && (
-        <div className="fixed inset-0 bg-gray-950 bg-opacity-60 flex justify-center items-start sm:items-center z-50 w-full overflow-y-auto">
+        <div className="fixed inset-0 bg-gray-950 bg-opacity-60 flex justify-center items-start sm:items-center z-60 w-full overflow-y-auto">
           <div
             className={`p-6 rounded-lg w-full sm:max-w-xl md:max-w-4xl mx-4 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}
           >
@@ -139,8 +164,6 @@ const Buddyfight: React.FC = () => {
                     <CardEffect effect={selectedCard.effect} />
                   </li>
 
-
-
                   <li className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <span
                       className={`p-4 rounded-lg border w-full ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-gray-100 border-gray-300'}`}
@@ -165,6 +188,58 @@ const Buddyfight: React.FC = () => {
               >
                 ปิด
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showSetPopup && selectedSet && (
+        <div className={`fixed inset-0 bg-gray-950 bg-opacity-60 flex items-center justify-center z-50`}>
+          <div className={`h-full overflow-y-auto w-full rounded-lg p-6 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-2xl font-bold">Set : {selectedSet.name}</h2>
+
+              <button
+                onClick={() => setShowSetPopup(false)}
+                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+              >
+                ปิด
+              </button>
+            </div>
+            <div className="flex flex-wrap justify-center sm:justify-start gap-4 transition-transform duration-300 ">
+              {selectedSet.cards.map((card, index) => (
+                <div
+                  key={index}
+                  className={`max-w-[16rem] relative z-10 hover:z-20 cursor-pointer hover:scale-105 rounded-lg shadow-md p-4 transform transition duration-300 ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-black'}`}
+                  onClick={() => setSelectedCard(card)}
+                >
+
+                  <span className={`absolute top-2 right-2 text-xs font-bold px-2 py-1 rounded z-20 ${isDarkMode ? 'bg-white text-black' : 'bg-gray-900 text-white'}`}>
+                    {card.lang.toUpperCase()}
+                  </span>
+                  <span className={`absolute top-2 right-11 text-xs font-bold px-2 py-1 rounded z-20 ${isDarkMode ? 'bg-gray-300 text-black' : 'bg-gray-900 text-white'}`}>
+                    {card.type}
+                  </span>
+
+                  <div className="flex justify-center">
+                    <div className={`${card.type === "ไม้ตาย" || card.type.includes("มอนสเตอร์ไม้ตาย")
+                      ? "h-67 z-10"
+                      : ""
+                      }`}>
+                      <img
+                        src={card.img}
+                        alt={card.name}
+                        className={`rounded${card.type === "ไม้ตาย" || card.type.includes("มอนสเตอร์ไม้ตาย")
+                          ? "transform rotate-90 translate-y-[53px] scale-[120%] w-73 origin-center"
+                          : "object-cover  h-72"
+                          }`}
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-2 font-semibold">{card.name}</div>
+                  <div className="text-sm text-gray-400">illust : {card.illust}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

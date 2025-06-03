@@ -24,6 +24,7 @@ const CardEffect: React.FC<CardEffectProps> = ({ effect }) => {
 
         '[@callcost]': { src: '/images/bf_key/Call Cost.png', size: 20 },
         '[@castcost]': { src: '/images/bf_key/Cast Cost.png', size: 20 },
+        '[@equipcost]': { src: '/images/bf_key/Equip Cost.png', size: 20 },
 
         '[@1/turn]': { src: '/images/bf_key/1 per Turn Rag.png', size: 20 },
         '[@an/turn]': { src: '/images/bf_key/Ablility Name.png', size: 20 },

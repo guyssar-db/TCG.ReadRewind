@@ -4,19 +4,19 @@ import { useTheme } from '../context/ThemeContext';
 const categories = [
   {
     title: 'Future Card Buddyfight',
-    description: 'เรียนรู้พื้นฐานทางคณิตศาสตร์ ต่อยอดสู่การแก้ปัญหาในชีวิตจริง',
+    description: 'description',
     bgDark: 'bg-gray-800',
     bgLight: 'bg-white'
   },
   {
     title: 'Vanguard',
-    description: 'ฝึกทักษะการฟัง พูด อ่าน เขียนภาษาอังกฤษอย่างมั่นใจ',
+    description: 'description',
     bgDark: 'bg-gray-700',
     bgLight: 'bg-white'
   },
   {
     title: 'Weiß Schwarz',
-    description: 'พัฒนาทักษะการอ่าน การเขียน และเข้าใจวรรณคดีไทย',
+    description: 'description',
     bgDark: 'bg-gray-600',
     bgLight: 'bg-white'
   }
@@ -31,7 +31,7 @@ const Home: React.FC = () => {
         <div className="absolute inset-0 bg-black opacity-70 z-0"></div> 
         <div className="relative z-10">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">ยินดีต้อนรับสู่ TCG.ReadRewind</h1> 
-          <p className="text-lg md:text-xl mb-8">แหล่งบันทึกการ์ดเกม fanmade ของ guyssar</p> 
+          <p className="text-lg md:text-xl mb-8">แหล่งบันทึกการ์ดเกม fanmade ของ guyssar (อาจะมีการเปลี่ยนแปลง)</p> 
           {/* <a href="/games" className="bg-[#fdc500] text-black font-semibold px-6 py-3 rounded-md hover:bg-yellow-400 transition-all">เริ่มเรียนรู้เลย</a> */}
         </div>
       </section>

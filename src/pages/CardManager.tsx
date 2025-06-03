@@ -125,36 +125,51 @@ const CardManager: React.FC = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                 {Object.entries(newCard).map(([key, value]) => (
-                    key === 'effect' ? (
-                        <textarea
-                            key={key}
-                            name={key}
-                            value={value ?? ''}
-                            onChange={handleChange}
-                            className={`border p-2 rounded min-h-[100px] ${isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : 'bg-white border-gray-300 text-black'}`}
-                            placeholder={key}
-                        />
-                    ) : (
-                        <input
-                            key={key}
-                            type="text"
-                            name={key}
-                            value={value ?? ''}
-                            onChange={handleChange}
-                            className={`border border-gray-300 p-2 rounded ${isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : 'bg-white border-gray-300 text-black'}`}
-                            placeholder={key}
-                        />
-                    )
+                    <div
+                        key={key}
+                        className={key === 'effect' ? 'sm:col-span-2 w-full' : 'w-full'}
+                    >
+                        <p className="mb-1 capitalize">{key}</p>
+                        {key === 'effect' ? (
+                            <textarea
+                                name={key}
+                                value={value ?? ''}
+                                onChange={handleChange}
+                                className={`border p-2 rounded w-full min-h-[150px] resize-y ${isDarkMode
+                                    ? 'bg-gray-800 border-gray-700 text-white'
+                                    : 'bg-white border-gray-300 text-black'
+                                    }`}
+                                placeholder={key}
+                            />
+                        ) : (
+                            <input
+                                type="text"
+                                name={key}
+                                value={value ?? ''}
+                                onChange={handleChange}
+                                className={`border p-2 rounded w-full ${isDarkMode
+                                    ? 'bg-gray-800 border-gray-700 text-white'
+                                    : 'bg-white border-gray-300 text-black'
+                                    }`}
+                                placeholder={key}
+                            />
+                        )}
+                    </div>
                 ))}
 
                 <button
                     onClick={handleAddOrEdit}
-                    className={`${editIndex !== null ? 'bg-yellow-600 hover:bg-yellow-700' : 'bg-blue-600 hover:bg-blue-700'
-                        } text-white py-2 rounded col-span-full`}
+                    disabled={!newCard.name || !newCard.img}
+                    className={`${editIndex !== null
+                        ? 'bg-yellow-600 hover:bg-yellow-700'
+                        : 'bg-blue-600 hover:bg-blue-700'
+                        } text-white py-2 rounded col-span-full ${!newCard.name || !newCard.img ? 'opacity-50 cursor-not-allowed' : ''
+                        }`}
                 >
                     {editIndex !== null ? 'บันทึกการแก้ไข' : 'เพิ่มข้อมูล'}
                 </button>
             </div>
+
             <div className="mb-4">
                 <input
                     type="text"
@@ -164,6 +179,7 @@ const CardManager: React.FC = () => {
                     className={`w-full border p-2 rounded ${isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : 'bg-white border-gray-300 text-black'}`}
                 />
             </div>
+
             {/* Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {cards
@@ -174,30 +190,36 @@ const CardManager: React.FC = () => {
                         <div key={index} className={`flex flex-col ${isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : 'bg-white border-gray-300 text-black'} rounded-md shadow-md p-4 w-full`}>
 
                             <div className="flex items-start space-x-4">
-                                <img src={card.img} alt={card.name} className="w-40 h-56 object-cover rounded" />
+                                <img
+                                    src={card.img}
+                                    alt={card.name}
+                                    className={` rounded transition-transform duration-300 ${card.type === "ไม้ตาย" || card.type.includes("มอนสเตอร์ไม้ตาย") ? "rotate-90 w-56 h-40 -translate-y-[-33px]" : "w-40 h-56 object-cover"
+                                        }`}
+                                />
 
-                                <div className="flex flex-col items-end justify-start flex-1 space-y-2">
+                                <div className="flex flex-col items-end justify-start flex-1 space-y-2 w-full">
+
                                     <div className='flex  justify-between w-full'>
                                         <h1>{card.name}</h1>
-                                        <div className='flex gap-2'>
-                                            <button
-                                                onClick={() => handleEdit(index)}
-                                                className="bg-yellow-500 text-white px-3 h-10 rounded hover:bg-yellow-600"
-                                            >
-                                                แก้ไข
-                                            </button>
-                                            <button
-                                                onClick={() => handleDelete(index)}
-                                                className="bg-red-500 text-white px-3 h-10 rounded hover:bg-red-600"
-                                            >
-                                                ลบ
-                                            </button>
-                                        </div>
                                     </div>
-                                    <div className="relative mt-4 min-h-[60px]">
+                                    <div className="relative mt-4 min-h-[60px] w-full">
                                         <div className={`${isDarkMode ? 'bg-gray-900 border-gray-700 text-white' : 'bg-gray-200 border-gray-300 text-black'} bottom-2 right-2  bg-opacity-70 text-xs p-2 rounded-md w-full`}>
                                             <CardEffect effect={card.effect} />
                                         </div>
+                                    </div>
+                                    <div className='flex gap-2'>
+                                        <button
+                                            onClick={() => handleEdit(index)}
+                                            className="bg-yellow-500 text-white px-3 h-10 rounded hover:bg-yellow-600"
+                                        >
+                                            แก้ไข
+                                        </button>
+                                        <button
+                                            onClick={() => handleDelete(index)}
+                                            className="bg-red-500 text-white px-3 h-10 rounded hover:bg-red-600"
+                                        >
+                                            ลบ
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -211,7 +233,7 @@ const CardManager: React.FC = () => {
             {showJsonPopup && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-gray-900 p-6 rounded shadow-lg max-w-3xl w-full relative">
-                        <h2 className="text-xl font-bold mb-4">📦 JSON ข้อมูล</h2>
+                        <h2 className="text-xl font-bold mb-4">📦 ข้อมูล JSON</h2>
                         <pre className="bg-gray-800 p-4 rounded text-sm max-h-[60vh] overflow-auto whitespace-pre-wrap">
                             {JSON.stringify(cards, null, 2)}
                         </pre>
