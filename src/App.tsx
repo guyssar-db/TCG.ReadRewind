@@ -2,11 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useTheme } from './context/ThemeContext';
 
-import Navbar from './components/Navbar';
+import Navbar from './components/ui/Navbar';
 import Home from './pages/Home';
 import Cards from './pages/Cards';
 import CardManager from './pages/CardManager';
 import Buddyfight from './pages/buddyfight/Buddyfight';
+import NotFoundPage from './pages/NotFoundPage'
 
 
 const App: React.FC = () => {
@@ -26,6 +27,7 @@ const App: React.FC = () => {
           <Route path="/cards" element={<Cards />} />
           <Route path="/cards/buddyfight" element={<Buddyfight />} />
           <Route path="/cardjson" element={<CardManager />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
     </Router>
