@@ -37,8 +37,8 @@ const Navbar: React.FC = () => {
             <ul className="flex space-x-6 items-center">
               <li><Link to="/" className={isDarkMode ? 'hover:text-gray-400' : 'hover:text-gray-600'}>Home</Link></li>
               <li><Link to="/cards" className={isDarkMode ? 'hover:text-gray-400' : 'hover:text-gray-600'}>Cards</Link></li>
-              <li><Link to="/about" className={isDarkMode ? 'hover:text-gray-400' : 'hover:text-gray-600'}>About</Link></li>
-              <li><Link to="/contact" className={isDarkMode ? 'hover:text-gray-400' : 'hover:text-gray-600'}>Contact</Link></li>
+              {/* <li><Link to="/about" className={isDarkMode ? 'hover:text-gray-400' : 'hover:text-gray-600'}>About</Link></li> */}
+              {/* <li><Link to="/contact" className={isDarkMode ? 'hover:text-gray-400' : 'hover:text-gray-600'}>Contact</Link></li> */}
 
               <li className="relative" ref={dropdownRef}>
                 <button onClick={toggleDarkMode} className={`px-4 py-2 rounded-md ${btnThemeClass} transform transition duration-300`}>
@@ -79,8 +79,8 @@ const Navbar: React.FC = () => {
             <ul className="space-y-3 text-lg">
               <li><Link to="/" className={`block px-2 py-1 rounded-md ${isDarkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-300'}`}>Home</Link></li>
               <li><Link to="/cards" className={`block px-2 py-1 rounded-md ${isDarkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-300'}`}>Cards</Link></li>
-              <li><Link to="/games" className={`block px-2 py-1 rounded-md ${isDarkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-300'}`}>Games</Link></li>
-              <li><Link to="/contact" className={`block px-2 py-1 rounded-md ${isDarkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-300'}`}>Contact</Link></li>
+              {/* <li><Link to="/games" className={`block px-2 py-1 rounded-md ${isDarkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-300'}`}>Games</Link></li> */}
+              {/* <li><Link to="/contact" className={`block px-2 py-1 rounded-md ${isDarkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-300'}`}>Contact</Link></li> */}
               <li>
                 <button
                   onClick={toggleDarkMode}
