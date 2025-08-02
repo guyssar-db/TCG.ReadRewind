@@ -21,7 +21,15 @@ const CardEffect: React.FC<CardEffectProps> = ({ effect }) => {
         '[@duo]': { src: '/images/bf_key/Duo.webp', size: 20 },
         '[@womni]': { src: '/images/bf_key/Omni Lord-1.webp', size: 20 },
         '[@pomni]': { src: '/images/bf_key/Omni Lord-2.webp', size: 20 },
-        '[@weponry]': { src: '/images/bf_key/Weaponry Link.webp', size: 20 },
+        '[@weaponry]': { src: '/images/bf_key/Weaponry Link.webp', size: 20 },
+        '[@3buddy]': { src: '/images/bf_key/Triple Buddy.webp', size: 20 },
+        '[@2uddy]': { src: '/images/bf_key/Double Buddy.webp', size: 20 },
+        '[@dragod]': { src: '/images/bf_key/Dragod.webp', size: 20 },
+        '[@release]': { src: '/images/bf_key/Release.webp', size: 20 },
+        '[@reversal]': { src: '/images/bf_key/Reversal.webp', size: 20 },
+
+        '[@rest]': { src: '/images/bf_key/Rest Icon.webp', size: 20 },
+        '[@stand]': { src: '/images/bf_key/Stand Icon.webp', size: 20 },
         
         //redskill
         '[@2attack]': { src: '/images/bf_key/Double Attack.webp', size: 20 },
@@ -38,6 +46,13 @@ const CardEffect: React.FC<CardEffectProps> = ({ effect }) => {
         '[@equipchange]': { src: '/images/bf_key/Equipment Change.webp', size: 20 },
         '[@impacttransform]': { src: '/images/bf_key/Impact Transform.webp', size: 20 },
         '[@purge]': { src: '/images/bf_key/Purge.webp', size: 20 },
+        '[@ride]': { src: '/images/bf_key/Ride.webp', size: 20 },
+        '[@counterattack]': { src: '/images/bf_key/Counter Attack.webp', size: 20 },
+        '[@dragonify]': { src: '/images/bf_key/Dragonify.webp', size: 20 },
+        '[@set]': { src: '/images/bf_key/Set.webp', size: 20 },
+        '[@shadowdive]': { src: '/images/bf_key/Shadow Dive.webp', size: 20 },
+        '[@station]': { src: '/images/bf_key/Station.webp', size: 20 },
+        '[@transform]': { src: '/images/bf_key/Transform.webp', size: 20 },
 
         '[@lifelink1]': { src: '/images/bf_key/Life Link 1.webp', size: 20 },
         '[@lifelink2]': { src: '/images/bf_key/Life Link 2.webp', size: 20 },
@@ -56,6 +71,14 @@ const CardEffect: React.FC<CardEffectProps> = ({ effect }) => {
         '[@an/turn]': { src: '/images/bf_key/Ablility Name.webp', size: 20 },
         '[@1/game]': { src: '/images/bf_key/1 per Game Rag.webp', size: 20 },
         '[@1/set]': { src: '/images/bf_key/1 per set.webp', size: 20 },
+
+        //over all
+        '[@ovt]': { src: '/images/bf_key/Overturn.webp', size: 20 },
+        '[@ovk]': { src: '/images/bf_key/Overkill.webp', size: 21 },
+        '[@ovh]': { src: '/images/bf_key/Overthrow.webp', size: 21 },
+        '[@ovk:r]': { src: '/images/bf_key/Overkill Reboot.webp', size: 21 },
+        '[@ovd]': { src: '/images/bf_key/OverDrive.webp', size: 21 },
+
 
         //custom
         '[@bloodlust]': { src: '/images/bf_key/Bloodlust.webp', size: 20 },

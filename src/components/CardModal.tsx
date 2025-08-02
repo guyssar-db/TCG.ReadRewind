@@ -37,9 +37,9 @@ const CardModal: React.FC<CardModalProps> = ({ card, isDarkMode, onClose }) => (
               <span className={`p-4 rounded-lg border w-full ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-gray-100 border-gray-300'}`}><span className="font-semibold">World:</span> {card.world}</span>
             </li>
             <li className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <span className={`p-4 rounded-lg border w-full ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-gray-100 border-gray-300'}`}><span className="font-semibold">ATK:</span> <span className='text-blue-400 font-bold'>{card.atk ?? '-'}</span></span>
+              <span className={`p-4 rounded-lg border w-full ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-gray-100 border-gray-300'}`}><span className="font-semibold">ATK:</span> <span className='text-red-400 font-bold'>{card.atk ?? '-'}</span></span>
               <span className={`p-4 rounded-lg border w-full ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-gray-100 border-gray-300'}`}><span className="font-semibold">CRI:</span> <span className='font-bold'>{card.cri ?? '-'}</span></span>
-              <span className={`p-4 rounded-lg border w-full ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-gray-100 border-gray-300'}`}><span className="font-semibold">DEF:</span> <span className='text-red-400 font-bold'>{card.def ?? '-'}</span></span>
+              <span className={`p-4 rounded-lg border w-full ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-gray-100 border-gray-300'}`}><span className="font-semibold">DEF:</span> <span className='text-blue-400 font-bold'>{card.def ?? '-'}</span></span>
             </li>
             <li className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <span className={`p-4 rounded-lg border w-full ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-gray-100 border-gray-300'}`}><span className="font-semibold">Attribute:</span> {card.attibute}</span>
